@@ -3,6 +3,7 @@ var router = express.Router();
 var url = require('url');
 
 var username = "";
+var myHostname = "";
 var amazonData;
 
 /* GET home page. */
@@ -11,19 +12,21 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/username', function(req, res, next) {
-	res.send(username)
+	names = {"username": username, "myHostname": myHostname};
+  res.send(names);
 })
 
 router.post('/loading', function(req, res, next) {
   
   var myUrl = req.body.link;
-  var myHostname = url.parse(myUrl).hostname;
-  username = url.parse(myUrl).pathname.replace('/','').replace('/','');
-  /*if (myHostname == "www.pinterest.com"){
-
-  }else if(myHostname == "www.linkedin.com"){
-
-  }else if(myHostname == "www.facebook.com"){
+  myHostname = url.parse(myUrl).hostname;
+  //
+  if(myHostname == "www.linkedin.com"){
+    username = url.parse(myUrl).pathname.replace('/in/', '').replace('/','');
+  }else {
+    //if (myHostname == "www.pinterest.com"){
+    username = url.parse(myUrl).pathname.replace('/','').replace('/','');
+  } /*else if(myHostname == "www.facebook.com"){
 
   }*/
   console.log("Host name is: " + myHostname + " and User name is: " + username);
@@ -52,6 +55,10 @@ router.post('/landing', function(req, res, next) {
 
 router.get('/landing', function(req, res, next) {
 	res.render("landing");
+})
+
+router.get('/return', function(req, res, next){
+  res.render("index");
 })
 
 router.get('/amazonData', function(req, res, next) {
