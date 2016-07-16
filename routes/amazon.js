@@ -5,7 +5,7 @@ var amazon = require('amazon-product-api');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	var array = ["bento", "diy", "love", "chocolate"];
+	var array = [req.query.data0, req.query.data1, req.query.data2, req.query.data3];
 	var data = combinations(array);
 
 	amazonClient = amazon.createClient({
@@ -30,7 +30,7 @@ var combinations = function(array) {
 	return combination_data;
 }
 
-count = 0;
+var count = 0;
 var searchItem = function(data, i, items, res) {
 	amazonClient.itemSearch({
 		keywords: data[i],
@@ -50,11 +50,14 @@ var searchItem = function(data, i, items, res) {
 				} catch(e) {
 					var price = "Go To Link"
 				}
-				items.push({ url: url, name: name, image: image, price: price });
+				var item = { url: url, name: name, image: image, price: price };
+				console.log(item);
+				items.push(item);
 			//}
 		}
 		if(count == data.length) {
 			res.send(items);
+			count = 0
 		}
 	});
 }
