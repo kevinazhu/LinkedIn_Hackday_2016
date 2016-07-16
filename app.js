@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var amazon = require('./routes/amazon');
 //var facebook = require('./routes/facebook');
 var linkedin = require('./routes/linkedin');
+var pinterest = require('./routes/pinterest');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/amazon', amazon);
 app.use('/users', users);
 //app.use('/facebook', facebook);
 app.use('/linkedin',linkedin);
+app.use('/pinterest', pinterest);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
