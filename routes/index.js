@@ -20,16 +20,16 @@ router.post('/loading', function(req, res, next) {
   
   var myUrl = req.body.link;
   myHostname = url.parse(myUrl).hostname;
+  console.log(myHostname);
   //
-  if(myHostname == "www.linkedin.com"){
+  if(myHostname.includes("linkedin.com")) {
     username = url.parse(myUrl).pathname.replace('/in/', '').replace('/','');
-  }else {
-    //if (myHostname == "www.pinterest.com"){
+  } else if (myHostname.includes("pinterest.com")) {
     username = url.parse(myUrl).pathname.replace('/','').replace('/','');
-  } /*else if(myHostname == "www.facebook.com"){
-
-  }*/
-  console.log("Host name is: " + myHostname + " and User name is: " + username);
+  } else if(myHostname.includes("twitter.com")) {
+  	username = url.parse(myUrl).pathname.replace('/','').replace('/','');
+  	console.log(username);
+  }
   res.render('loading');
 
   // parce the link and check if the link is valid
@@ -55,10 +55,6 @@ router.post('/landing', function(req, res, next) {
 
 router.get('/landing', function(req, res, next) {
 	res.render("landing");
-})
-
-router.get('/return', function(req, res, next){
-  res.render("index");
 })
 
 router.get('/amazonData', function(req, res, next) {
