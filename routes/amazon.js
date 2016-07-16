@@ -41,19 +41,19 @@ var searchItem = function(data, i, items, res) {
 		} else {
 			//for(var num = 0; num < results.length; num++) {
 				var url = results[0]["DetailPageURL"][0];
-				var name = results[0]["ItemAttributes"][0]["Title"][0];
 				var image = results[0]["LargeImage"][0]["URL"][0];
 				try {
 					var price = results[0]["OfferSummary"][0]["LowestNewPrice"][0]["FormattedPrice"][0];
 				} catch(e) {
 					var price = "Go To Link"
 				}
-				var item = { url: url, name: name, image: image, price: price };
+				var item = { url: url, image: image, price: price };
 				items.push(item);
 			//}
 		}
 		count++;
 		if(count == data.length) {
+			console.log(items);
 			res.send(JSON.stringify(items));
 			count = 0
 		}
