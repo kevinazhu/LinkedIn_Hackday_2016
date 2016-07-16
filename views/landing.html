@@ -49,51 +49,71 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="img/gift.png" alt="">
-                    <div class="intro-text">
-                        <span class="name">Find a perfect gift</span>
-                        <hr class="star-light">
-                        <span class="skills">We will find a perfect gift for anyone</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Contact Section -->
-    <section id="contact">
+    <!-- Portfolio Grid Section -->
+    <br>
+    <br>
+    <section id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Find the gift!</h2>
+                    <h2>Here are the gifts!</h2>
                     <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form action="/loading" method="POST" name="sentMessage" id="findForm" novalidate>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Profile Link of the recipient</label>
-                                <input type="text" class="form-control" placeholder="Profile link of the recipient" name="link" required data-validation-required-message="Please enter a valid profile link.">
-                                <p class="help-block text-danger"></p>
+                <div class="col-sm-4 portfolio-item">
+                    <a id="a0" href="#portfolioModal1" class="portfolio-link" data-toggle="modal" target="_blank">
+                        <div class="caption">
+                            <div class="caption-content">
                             </div>
                         </div>
-                        <br>
-                        <div id="success"></div>
-                        <div class="row">
-                            <div class="form-group col-xs-12 text-center">
-                                <button type="submit" class="btn btn-success btn-lg">Find the gift!</button>
+                        <img id="i0" src="img/portfolio/cabin.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a id="a1" href="#portfolioModal2" class="portfolio-link" data-toggle="modal" target="_blank">
+                        <div class="caption">
+                            <div class="caption-content">
                             </div>
                         </div>
-                    </form>
+                        <img id="i1" src="img/portfolio/cake.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a id="a2" href="#portfolioModal3" class="portfolio-link" data-toggle="modal" target="_blank">
+                        <div class="caption">
+                            <div class="caption-content">
+                            </div>
+                        </div>
+                        <img id="i2" src="img/portfolio/circus.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a id="a3" href="#portfolioModal4" class="portfolio-link" data-toggle="modal" target="_blank">
+                        <div class="caption">
+                            <div class="caption-content">
+                            </div>
+                        </div>
+                        <img id="i3" src="img/portfolio/game.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a id="a4" href="#portfolioModal5" class="portfolio-link" data-toggle="modal" target="_blank">
+                        <div class="caption">
+                            <div class="caption-content">
+                            </div>
+                        </div>
+                        <img id="i4" src="img/portfolio/safe.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a id="a5" href="#portfolioModal6" class="portfolio-link" data-toggle="modal" target="_blank">
+                        <div class="caption">
+                            <div class="caption-content">
+                            </div>
+                        </div>
+                        <img id="i5" src="img/portfolio/submarine.png" class="img-responsive" alt="">
+                    </a>
                 </div>
             </div>
         </div>
@@ -104,7 +124,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>How to use Misty</h2>
+                    <h2>Find another gift!</h2>
                     <hr class="star-light">
                 </div>
             </div>
@@ -114,6 +134,9 @@
                 </div>
                 <div class="col-lg-4">
                     <p>Misty analyzes personal preferences with people's public profile and will select the best gift recommendations.</p>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn-lg" onclick="window.location.href='/'">Find another gift</button>
                 </div>
             </div>
         </div>
