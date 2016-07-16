@@ -25,7 +25,8 @@ router.get('/profile/:screenName', function(req, res, next) {
   var params = {screen_name: req.params.screenName};
   client.get('users/lookup', params, function(error, tweets, response){
     if (!error) {
-      res.send(tweets[0].description);
+      var keywords = getProfileWithLibrary(tweets);
+      res.send(getFirstFourNouns(keywords));
     }
   });
 });
@@ -50,6 +51,22 @@ function getTweetsWithLibrary(tweets) {
     }
   }
   return keywords;
+}
+
+function getProfileWithLibrary(tweets) {
+  var extraction_result = keyword_extractor.extract(tweets[0].description, {
+                          language:"english",
+                          remove_digits: true,
+                          return_changed_case:true,
+                          remove_duplicates: false
+                     });
+  var final = [];
+  for (var count in extraction_result) {
+    if (isValid(extraction_result[count])) {
+      final.push(extraction_result[count]);
+    }
+  }
+  return final;
 }
 
 function isValid(str) {
