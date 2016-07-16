@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var url = require('url');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -7,8 +8,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/loading', function(req, res, next) {
+  
+  var myUrl = req.body.link;
+  var myHostname = url.parse(myUrl).hostname;
+  var myPathname = url.parse(myUrl).pathname.replace('/','').replace('/','');
+  /*if (myHostname == "www.pinterest.com"){
+
+  }else if(myHostname == "www.linkedin.com"){
+
+  }else if(myHostname == "www.facebook.com"){
+
+  }*/
+  console.log("Host name is: " + myHostname + " and User name is: " + myPathname);
   res.render('loading');
-  console.log(req.body.link);
 
   // parce the link and check if the link is valid
 
