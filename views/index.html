@@ -65,17 +65,36 @@
         </div>
     </header>
 
-    <!-- Portfolio Grid Section -->
-    <section id="portfolio">
+    <!-- Contact Section -->
+    <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>We support the links of</h2>
+                    <h2>Find the gift!</h2>
                     <hr class="star-primary">
                 </div>
             </div>
-            <div class="row text-center">
-                <img src="img/portfolio/logo.png" class="img-responsive" alt="">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                    <form action="/loading" method="POST" name="sentMessage" id="findForm" novalidate>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Profile Link of the recipient</label>
+                                <input type="text" class="form-control" placeholder="Profile link of the recipient" name="link" required data-validation-required-message="Please enter a valid profile link.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-success btn-lg">Find a gift!</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -100,36 +119,17 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Find the gift!</h2>
+                    <h2>We support the links of</h2>
                     <hr class="star-primary">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form action="/loading" method="POST" name="sentMessage" id="findForm" novalidate>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Profile Link of the recipient</label>
-                                <input type="text" class="form-control" placeholder="Link" name="link" required data-validation-required-message="Please enter a valid profile link.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <br>
-                        <div id="success"></div>
-                        <div class="row">
-                            <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Find a gift!</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="row text-center">
+                <img src="img/portfolio/logo.png" class="img-responsive" alt="">
             </div>
         </div>
     </section>
