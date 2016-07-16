@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://fb.me/react-0.14.7.js"></script>
+<script src="https://fb.me/react-dom-0.14.7.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>test</title>
+</head>
+<body>
+  <div id="target"></div>
+  <script type="text/javascript">
+    'use strict';
+
+var suggestions = [{
+  name: 'gift 1',
+  url: 'http://google.com'
+}, {
+  name: 'gift 2',
+  url: 'http://yahoo.com'
+}];
+
+var List = function List(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h1',
+      null,
+      'Suggestions'
+    ),
+    React.createElement(
+      'ul',
+      null,
+      props.data.map(function (item, index) {
+        return React.createElement(
+          'li',
+          null,
+          React.createElement(
+            'a',
+            { href: item.url },
+            item.name
+          )
+        );
+      })
+    )
+  );
+};
+
+ReactDOM.render(React.createElement(List, { data: suggestions }), document.getElementById('target'));
+  </script>
+</body>
+</html>
