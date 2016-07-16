@@ -60,7 +60,7 @@ function sortWordsAccordingToFrequency(str) {
 }
 
 /* GET home page. */
-router.get('/:userName', function(req, res, next) {
+router.post('/', function(req, res, next) {
   var pinterest = pinterestAPI(req.params.userName);
     pinterest.getPins(function (pins) {
       var pinString = "";
