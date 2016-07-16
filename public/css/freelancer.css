@@ -200,18 +200,21 @@ section.success {
 #portfolio .portfolio-item {
   margin: 0 0 15px;
   right: 0;
+  max-height: 400px;
 }
 #portfolio .portfolio-item .portfolio-link {
   display: block;
   position: relative;
   max-width: 400px;
+  max-height: 400px;
   margin: 0 auto;
 }
 #portfolio .portfolio-item .portfolio-link .caption {
   background: rgba(24, 188, 156, 0.9);
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 20px;
+  text-align: center;
   opacity: 0;
   transition: all ease 0.5s;
   -webkit-transition: all ease 0.5s;

@@ -1,6 +1,7 @@
 $.get('/amazonData', function(data, status) {
+	console.log(data);
 	var newdata = JSON.parse(data);
-	
+	console.log(newdata);
 	document.getElementById("a0").href = newdata[0].url;
 	document.getElementById("i0").src = newdata[0].image;
 	document.getElementById("a1").href = newdata[1].url;
