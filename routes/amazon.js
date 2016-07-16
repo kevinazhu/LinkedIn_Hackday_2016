@@ -54,7 +54,7 @@ var searchItem = function(data, i, items, res) {
 		}
 		count++;
 		if(count == data.length) {
-			res.send(items);
+			res.send(JSON.stringify(items));
 			count = 0
 		}
 	});
