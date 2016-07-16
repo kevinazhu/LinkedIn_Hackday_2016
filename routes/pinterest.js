@@ -1,28 +1,72 @@
 var express = require('express');
 var router = express.Router();
 var pinterestAPI = require('pinterest-api');
-// var keyword_extractor = require("keyword-extractor");
+var keyword_extractor = require("keyword-extractor");
 var pos = require('pos');
 
+/* GET home page. */
+router.get('/second/:userName', function(req, res, next) {
+  var pinterest = pinterestAPI(req.params.userName);
+    pinterest.getPins(function (pins) {
+      var pinString = "";
+      for (var id in pins.data) {
+        pinString = pinString + pins.data[id].description + " ";
+      }
+      res.send(sortWordsAccordingToFrequency(pinString));
+    });
+});
 
+/* Method two */
+router.get('/:userName', function(req, res, next) {
+  var pinterest = pinterestAPI(req.params.userName);
+    pinterest.getPins(function (pins) {
+      var keywords = getKeywordsWithLibrary(pins);
 
-function isValid(str) { return /^\w+$/.test(str); }
+      res.send(getFirstFourNouns(sortByFrequency(keywords)));
+    });
+});
+
+function sortWordsAccordingToFrequency(str) {
+  var words = new pos.Lexer().lex(str);
+  validWords = [];
+  for (var count in words) {
+    if (isValid(words[count])) validWords.push(words[count].toLowerCase());
+  }
+  var sortedWordsByFrequency = sortByFrequency(validWords);
+  return getFirstFourNouns(sortedWordsByFrequency);
+}
+
+function getKeywordsWithLibrary(pins) {
+  keywords = [];
+  for (var id in pins.data) {
+    var extraction_result = keyword_extractor.extract(pins.data[id].description, {
+                            language:"english",
+                            remove_digits: true,
+                            return_changed_case:true,
+                            remove_duplicates: false
+                       });
+    var final = [];
+    for (var count in extraction_result) {
+      if (isValid(extraction_result[count])) {
+        final.push(extraction_result[count]);
+      }
+    }
+    keywords = keywords.concat(final);
+  }
+  return keywords;
+}
+
+function isValid(str) {
+  return /^\w+$/.test(str);
+}
 
 function getSortedKeys(obj) {
     var keys = []; for(var key in obj) keys.push(key);
     return keys.sort(function(a,b){return obj[b]-obj[a]});
 }
 
-function sortWordsAccordingToFrequency(str) {
-  var words = new pos.Lexer().lex(str);
-  validWords = [];
-
-  for (var count in words) {
-    if (isValid(words[count])) validWords.push(words[count].toLowerCase());
-  }
-
+function sortByFrequency(validWords) {
   var sortedValidWords = validWords.sort();
-
   repeatedWords = [];
   for (var count in sortedValidWords) {
     if (count == 1) continue;
@@ -36,15 +80,15 @@ function sortWordsAccordingToFrequency(str) {
       result[repeatedWords[count]] = 0;
     ++result[repeatedWords[count]];
   }
-
   sortedWordsByFrequency = getSortedKeys(result);
+  return sortedWordsByFrequency;
+}
 
-  console.log(sortedWordsByFrequency.length);
-
+function getFirstFourNouns(words) {
   var max = 0;
   var finalWordsNeeded = [];
   var tagger = new pos.Tagger();
-  var taggedWords = tagger.tag(sortedWordsByFrequency);
+  var taggedWords = tagger.tag(words);
   for (i in taggedWords) {
     if(max >= 4) break;
     var taggedWord = taggedWords[i];
@@ -55,23 +99,7 @@ function sortWordsAccordingToFrequency(str) {
       max += 1;
     }
   }
-
   return finalWordsNeeded;
 }
-
-/* GET home page. */
-router.post('/', function(req, res, next) {
-  var pinterest = pinterestAPI(req.params.userName);
-    pinterest.getPins(function (pins) {
-      var pinString = "";
-      for (var id in pins.data) {
-        pinString = pinString + pins.data[id].description + " ";
-      }
-      // sortWordsAccordingToFrequency(pinString);
-
-      res.send(sortWordsAccordingToFrequency(pinString));
-    });
-
-});
 
 module.exports = router;
