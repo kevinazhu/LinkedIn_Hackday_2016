@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/loading', function(req, res, next) {
   res.render('loading');
+  console.log(req.body.link);
 });
 
 module.exports = router;
