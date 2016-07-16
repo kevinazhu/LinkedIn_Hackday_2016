@@ -12,13 +12,21 @@
   <script type="text/javascript">
     'use strict';
 
-var suggestions = [{
-  name: 'gift 1',
-  url: 'http://google.com'
-}, {
-  name: 'gift 2',
-  url: 'http://yahoo.com'
-}];
+items = [{url: "/www.linkedin.com", name: "test"}]
+loadItems();
+
+var loadItems = function loadItems() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      items = xhttp.responseText;
+      console.log(items);
+      return items;
+    }
+  };
+  xhttp.open("GET", "/amazon", true);
+  xhttp.send();
+}
 
 var List = function List(props) {
   return React.createElement(
@@ -47,7 +55,7 @@ var List = function List(props) {
   );
 };
 
-ReactDOM.render(React.createElement(List, { data: suggestions }), document.getElementById('target'));
+ReactDOM.render(React.createElement(List, { data: items }), document.getElementById('target'));
   </script>
 </body>
 </html>
