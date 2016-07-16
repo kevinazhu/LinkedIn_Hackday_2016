@@ -3,7 +3,7 @@ var router = express.Router();
 var url = require('url');
 
 var username = "";
-var amazonData = [];
+var amazonData;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -46,7 +46,7 @@ router.post('/loading', function(req, res, next) {
 });
 
 router.post('/landing', function(req, res, next) {
-	amazonData = req.body;
+	amazonData = Object.keys(req.body)[0]
 	res.sendStatus(200);
 })
 
