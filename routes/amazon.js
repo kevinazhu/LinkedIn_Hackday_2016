@@ -14,8 +14,10 @@ router.get('/', function(req, res, next) {
 	});
 
 	var i = 0;
-	var items = []
-	searchItem(data, i, items, res);
+	var items = [];
+	for(var i = 0; i < data.length; i++) {
+		searchItem(data, i, items, res);
+	}
 });
 
 var combinations = function(array) {
@@ -28,24 +30,33 @@ var combinations = function(array) {
 	return combination_data;
 }
 
+count = 0;
 var searchItem = function(data, i, items, res) {
-	if(i < data.length) {
-		amazonClient.itemSearch({
-			keywords: data[i]
-		}, function(err, results, response) {
-			if (err) {
-				console.log(err)
-			} else {
-				for(var num = 0; num < results.length; num++) {
-					items.push({ url: results[num]["DetailPageURL"][0], name: results[num]["ItemAttributes"][0]["Title"][0] });
+	amazonClient.itemSearch({
+		keywords: data[i],
+		responseGroup: "ItemAttributes, Offers, Images"
+	}, function(err, results, response) {
+		if (err) {
+			count++;
+			console.log(err)
+		} else {
+			count++;
+			//for(var num = 0; num < results.length; num++) {
+				var url = results[0]["DetailPageURL"][0];
+				var name = results[0]["ItemAttributes"][0]["Title"][0];
+				var image = results[0]["LargeImage"][0]["URL"][0];
+				try {
+					var price = results[0]["OfferSummary"][0]["LowestNewPrice"][0]["FormattedPrice"][0];
+				} catch(e) {
+					var price = "Go To Link"
 				}
-				
-				searchItem(data, i+1, items, res);
-			}
-		});
-	} else {
-		res.send(items);
-	}
+				items.push({ url: url, name: name, image: image, price: price });
+			//}
+		}
+		if(count == data.length) {
+			res.send(items);
+		}
+	});
 }
 
 module.exports = router;
