@@ -17,7 +17,7 @@ router.get('/username', function(req, res, next) {
 })
 
 router.post('/loading', function(req, res, next) {
-  
+
   var myUrl = req.body.link;
   myHostname = url.parse(myUrl).hostname;
   console.log(myHostname);

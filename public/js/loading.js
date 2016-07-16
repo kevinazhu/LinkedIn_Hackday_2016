@@ -24,5 +24,5 @@ $.get('/username', function(names,status) {
 	} else {
 		window.location.href = "/";
 	}
-	
+
 })
