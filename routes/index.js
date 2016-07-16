@@ -49,7 +49,7 @@ router.post('/loading', function(req, res, next) {
 });
 
 router.post('/landing', function(req, res, next) {
-	amazonData = Object.keys(req.body)[0]
+	amazonData = Object.keys(req.body)[0];
 	res.sendStatus(200);
 })
 

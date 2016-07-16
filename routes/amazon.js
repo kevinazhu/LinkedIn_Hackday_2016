@@ -49,13 +49,12 @@ var searchItem = function(data, i, items, res) {
 					var price = "Go To Link"
 				}
 				var item = { url: url, name: name, image: image, price: price };
-				console.log(item);
 				items.push(item);
 			//}
 		}
 		count++;
 		if(count == data.length) {
-			res.send(JSON.stringify(items));
+			res.send(items);
 			count = 0
 		}
 	});
