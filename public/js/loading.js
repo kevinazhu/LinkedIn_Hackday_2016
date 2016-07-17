@@ -1,28 +1,32 @@
-$.get('/username', function(names,status) {
-	if(names["myHostname"].includes('pinterest.com')) {
-		$.get('/pinterest/' + names["username"], function(word, status) {
-			$.get('/amazon?data0=' + word[0] + '&data1=' + word[1] + '&data2=' + word[2] + '&data3=' + word[3], function(data, status) {
-				$.post('/landing', data, function(d, status) {
-					window.location.href = "/landing";
-				})
-			})
-		})
-	} else if(names["myHostname"].includes('linkedin.com')) {
-		$.get('/amazon?data0=' + 'book' + '&data1=' + 'software' + '&data2=' + 'code'+ '&data3=' + 'data', function(data, status) {
-			$.post('/landing', data, function(d, status) {
-				window.location.href = "/landing";
-			})
-		})
-	} else if(names["myHostname"].includes('twitter.com')) {
-		$.get('/twitter/' + names["username"], function(word, status) {
-			$.get('/amazon?data0=' + word[0] + '&data1=' + word[1] + '&data2=' + word[2] + '&data3=' + word[3], function(data, status) {
-				$.post('/landing', data, function(d, status) {
-					window.location.href = "/landing";
-				})
-			})
-		})
-	} else {
-		window.location.href = "/";
-	}
+if(myHostname.includes('pinterest.com')) {
+	$.get('/pinterest/' + username, function(words, status) {
+		post("/landing", words);
+	})
+} else if(myHostname.includes('twitter.com')) {
+	$.get('/twitter/' + username, function(words, status) {
+		post("/landing", words);
+	})
+} else if(myHostname.includes('linkedin.com')) {
+	words = ["book", "software", "code", "data"];
+	post("/landing", words);
+} else {
+	window.location.href = "/";
+}
 
-})
+function post(path, params) {
+    var form = document.createElement("form");
+    form.setAttribute("method", "POST");
+    form.setAttribute("action", path);
+
+    for(var i = 0; i < params.length; i++) {
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "data" + i);
+        hiddenField.setAttribute("value", params[i]);
+
+        form.appendChild(hiddenField);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}

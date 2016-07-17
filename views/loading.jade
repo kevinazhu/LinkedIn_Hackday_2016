@@ -1,1 +1,8 @@
-include loading.html
+doctype html
+html
+	head
+		script.
+			var username = !{JSON.stringify(username)}
+			var myHostname = !{JSON.stringify(myHostname)}
+	include loading.html
+

@@ -53,7 +53,6 @@ var searchItem = function(data, i, items, res) {
 		}
 		count++;
 		if(count == data.length) {
-			console.log(items);
 			res.send(JSON.stringify(items));
 			count = 0
 		}
