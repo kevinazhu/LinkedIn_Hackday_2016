@@ -34,8 +34,13 @@ function getAmazonResults(words) {
 		postData["data" + i] = words[i];
 	}
 	$.post('/amazon', postData, function(data, status) {
-		amazonData = JSON.parse(data);
-		renderResults(amazonData);
+		console.log(data);
+		if(data == "ERROR") {
+			window.location.href = "/#error";
+		} else {
+			amazonData = JSON.parse(data);
+			renderResults(amazonData);
+		}
 	})
 }
 
@@ -87,4 +92,3 @@ function renderResults(amazonData) {
 
 	ReactDOM.render(React.createElement(List, { data: amazonData }), document.getElementById('target'));
 }
-

@@ -17,6 +17,10 @@ router.post('/loading', function(req, res, next) {
 });
 */
 
+router.get('/results', function(req, res, next) {
+	res.redirect('/');
+})
+
 router.post('/results', function(req, res, next) {
 	var username = req.body.username;
 	var hostname = req.body.hostname;

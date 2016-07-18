@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	if(location.hash == "#error") {
-		$('#errorMessage').html("Could not find user specified");
+		$('#errorMessage').html("Sorry, we could not find user specified or there were not enough results.");
 	}
 
 	$("#gift-pic").click(function() {
@@ -32,7 +32,7 @@ function validateInput() {
 			username = parseURL(url).pathname.replace('/','').replace('/','');
 			$('#username').val(username);
 		} else {
-			$('#errorMessage').html("Please enter a supported URL");
+			$('#errorMessage').html("Please enter a supported URL.");
 			return false;
 		}
 	}
@@ -42,7 +42,7 @@ function validateInput() {
 		return true;
 	}
 
-	$('#errorMessage').html("Please include username within URL");
+	$('#errorMessage').html("Please include username within URL.");
 	return false;
 }
 
