@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
 	res.render('index');
 });
 
+/*
 router.post('/loading', function(req, res, next) {
 
  	var username = req.body.username;
@@ -14,10 +15,13 @@ router.post('/loading', function(req, res, next) {
 
 	res.render('loading', { "username": username, "hostname": hostname });
 });
+*/
 
-router.post('/landing', function(req, res, next) {
-	var words = req.body;
-	res.render('landing', { "words": words });
+router.post('/results', function(req, res, next) {
+	var username = req.body.username;
+	var hostname = req.body.hostname;
+
+	res.render('results', { "username": username, "hostname": hostname });
 })
 
 module.exports = router;

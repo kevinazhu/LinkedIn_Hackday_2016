@@ -1,7 +1,7 @@
 if(hostname.includes('pinterest.com')) {
 	$.post('/pinterest', { "username": username }, function(words, status) {
         if(checkWords(words)){
-            post("/landing", words);
+            post("/results", words);
         } else {
             window.location.href = "/#error";
         }
@@ -9,14 +9,14 @@ if(hostname.includes('pinterest.com')) {
 } else if(hostname.includes('twitter.com')) {
 	$.post('/twitter', { "username": username }, function(words, status) {
         if(checkWords(words)){
-            post("/landing", words);
+            post("/results", words);
         } else {
             window.location.href = "/#error";
         }
 	})
 } else if(hostname.includes('linkedin.com')) {
 	words = ["book", "software", "code", "data"];
-	post("/landing", words);
+	post("/results", words);
 } else {
 	window.location.href = "/#error";
 }

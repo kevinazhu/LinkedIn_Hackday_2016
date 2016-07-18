@@ -5,6 +5,7 @@ var amazon = require('amazon-product-api');
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
+	console.log(req.body);
 	var array = [req.body.data0, req.body.data1, req.body.data2, req.body.data3];
 	var data = combinations(array);
 

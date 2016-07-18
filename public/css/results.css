@@ -1,0 +1,30 @@
+#loading {
+	text-align: center;
+	background: #fff;
+}
+
+#loading .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+#loading .intro-text .title {
+	display: block;
+    font-weight: 700;
+    font-size: 2em;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+}
+
+#loading .intro-text .subtitle {
+    font-size: 1.25em;
+    font-weight: 300;
+}
+
+#portfolio {
+	padding-top: 150px;
+}
