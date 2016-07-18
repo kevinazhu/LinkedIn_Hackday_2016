@@ -70,7 +70,7 @@ function renderResults(amazonData) {
 	            { className: 'col-sm-4 portfolio-item' },
 	            React.createElement(
 	              'a',
-	              { id: 'a' + index, href: item.url, className: 'portfolio-link' },
+	              { id: 'a' + index, href: item.url, className: 'portfolio-link', target: '_blank' },
 	              React.createElement(
 	                'div',
 	                { className: 'caption' },
