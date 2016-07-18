@@ -4,8 +4,8 @@ var router = express.Router();
 var amazon = require('amazon-product-api');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-	var array = [req.query.data0, req.query.data1, req.query.data2, req.query.data3];
+router.post('/', function(req, res, next) {
+	var array = [req.body.data0, req.body.data1, req.body.data2, req.body.data3];
 	var data = combinations(array);
 
 	amazonClient = amazon.createClient({

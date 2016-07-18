@@ -1,16 +1,31 @@
-if(myHostname.includes('pinterest.com')) {
-	$.get('/pinterest/' + username, function(words, status) {
-		post("/landing", words);
+if(hostname.includes('pinterest.com')) {
+	$.post('/pinterest', { "username": username }, function(words, status) {
+        if(checkWords(words)){
+            post("/landing", words);
+        } else {
+            window.location.href = "/#error";
+        }
 	})
-} else if(myHostname.includes('twitter.com')) {
-	$.get('/twitter/' + username, function(words, status) {
-		post("/landing", words);
+} else if(hostname.includes('twitter.com')) {
+	$.post('/twitter', { "username": username }, function(words, status) {
+        if(checkWords(words)){
+            post("/landing", words);
+        } else {
+            window.location.href = "/#error";
+        }
 	})
-} else if(myHostname.includes('linkedin.com')) {
+} else if(hostname.includes('linkedin.com')) {
 	words = ["book", "software", "code", "data"];
 	post("/landing", words);
 } else {
-	window.location.href = "/";
+	window.location.href = "/#error";
+}
+
+function checkWords(words) {
+    if(words.length == 0) {
+        return false;
+    }
+    return true;
 }
 
 function post(path, params) {

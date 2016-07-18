@@ -5,8 +5,8 @@ var keyword_extractor = require("keyword-extractor");
 var pos = require('pos');
 
 /* GET home page. */
-router.get('/second/:userName', function(req, res, next) {
-  var pinterest = pinterestAPI(req.params.userName);
+router.post('/second', function(req, res, next) {
+  var pinterest = pinterestAPI(req.body.username);
     pinterest.getPins(function (pins) {
       var pinString = "";
       for (var id in pins.data) {
@@ -17,8 +17,8 @@ router.get('/second/:userName', function(req, res, next) {
 });
 
 /* Method two */
-router.get('/:userName', function(req, res, next) {
-  var pinterest = pinterestAPI(req.params.userName);
+router.post('/', function(req, res, next) {
+  var pinterest = pinterestAPI(req.body.username);
     pinterest.getPins(function (pins) {
       var keywords = getKeywordsWithLibrary(pins);
 

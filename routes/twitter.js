@@ -11,8 +11,8 @@ var client = new Twitter({
   access_token_secret: 'fatMfvVAOF4nNffFdqDhyki3i36FWs7CwsBBRnRnc9Xqn'
 });
 
-router.get('/:screenName', function(req, res, next) {
-  var params = {screen_name: req.params.screenName, count: "40"};
+router.post('/', function(req, res, next) {
+  var params = {screen_name: req.body.username, count: "40"};
   client.get('statuses/user_timeline', params, function(error, tweets, response){
     if (!error) {
       var keywords = getTweetsWithLibrary(tweets);
@@ -21,8 +21,8 @@ router.get('/:screenName', function(req, res, next) {
   });
 });
 
-router.get('/profile/:screenName', function(req, res, next) {
-  var params = {screen_name: req.params.screenName};
+router.post('/profile', function(req, res, next) {
+  var params = {screen_name: req.body.username};
   client.get('users/lookup', params, function(error, tweets, response){
     if (!error) {
       var keywords = getProfileWithLibrary(tweets);

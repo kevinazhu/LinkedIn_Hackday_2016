@@ -6,10 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var amazon = require('./routes/amazon');
 //var facebook = require('./routes/facebook');
-var linkedin = require('./routes/linkedin');
+//var linkedin = require('./routes/linkedin');
 var pinterest = require('./routes/pinterest');
 var twitter = require('./routes/twitter');
 
@@ -29,9 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/amazon', amazon);
-app.use('/users', users);
 //app.use('/facebook', facebook);
-app.use('/linkedin',linkedin);
+//app.use('/linkedin',linkedin);
 app.use('/pinterest', pinterest);
 app.use('/twitter', twitter);
 
