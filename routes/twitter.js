@@ -17,6 +17,8 @@ router.post('/', function(req, res, next) {
     if (!error) {
       var keywords = getTweetsWithLibrary(tweets);
       res.send(getFirstFourNouns(sortByFrequency(keywords)));
+    } else {
+      res.send([]);
     }
   });
 });
@@ -27,6 +29,8 @@ router.post('/profile', function(req, res, next) {
     if (!error) {
       var keywords = getProfileWithLibrary(tweets);
       res.send(getFirstFourNouns(keywords));
+    } else {
+      res.send([]);
     }
   });
 });
