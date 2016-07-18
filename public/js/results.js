@@ -65,7 +65,6 @@ function renderResults(amazonData) {
 	        'div',
 	        { className: 'row' },
 	        props.data.map(function (item, index) {
-	        	console.log(item);
 	          return React.createElement(
 	            'div',
 	            { className: 'col-sm-4 portfolio-item' },
