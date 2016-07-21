@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
 	}
 
 	amazonClient = amazon.createClient({
-		awsId: "AKIAJ2QRGNUKTH4WJRLQ",
+		awsId: "***REMOVED***",
 		awsSecret: "***REMOVED***"
 	});
 
